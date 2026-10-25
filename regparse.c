@@ -6211,7 +6211,10 @@ parse_subexp(Node** top, OnigToken* tok, int term,
 	     UChar** src, UChar* end, ScanEnv* env)
 {
   int r;
-  Node *node, **headp;
+  /* regex fix */
+  // Node *node, **headp;
+  Node *node, *topnode, **headp;
+  /* end regex fix */
 
   *top = NULL;
   r = parse_branch(&node, tok, term, src, end, env);
@@ -6224,23 +6227,44 @@ parse_subexp(Node** top, OnigToken* tok, int term,
     *top = node;
   }
   else if (r == TK_ALT) {
-    *top  = onig_node_new_alt(node, NULL);
-    headp = &(NCDR(*top));
+    /* regex fix */
+    // *top  = onig_node_new_alt(node, NULL);
+    // headp = &(NCDR(*top));
+    topnode = onig_node_new_alt(node, NULL);
+    headp   = &(NCDR(topnode));
+    /* end regex fix */
     while (r == TK_ALT) {
       r = fetch_token(tok, src, end, env);
-      if (r < 0) return r;
+      /* regex fix */
+      // if (r < 0) return r;
+      if (r < 0) {
+        onig_node_free(topnode);
+        return r;
+      }
+      /* end regex fix */
       r = parse_branch(&node, tok, term, src, end, env);
       if (r < 0) {
-	onig_node_free(node);
-	return r;
+	      onig_node_free(node);
+        /* regex fix */
+        /* the failed branch is not linked into topnode yet: free both */
+        onig_node_free(topnode);
+        /* end regex fix */
+	      return r;
       }
 
       *headp = onig_node_new_alt(node, NULL);
       headp = &(NCDR(*headp));
     }
 
-    if (tok->type != (enum TokenSyms )term)
+    if (tok->type != (enum TokenSyms )term) {
+      /* regex fix */
+       onig_node_free(topnode);
+      /* end regex fix */
       goto err;
+    }
+    /* regex fix */
+    *top = topnode;
+    /* end regex fix */
   }
   else {
     onig_node_free(node);
