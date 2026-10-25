@@ -586,6 +586,11 @@ ONIG_EXTERN const OnigSyntaxType*   OnigDefaultSyntax;
 #define ONIGERR_GROUP_NUMBER_OVER_FOR_CAPTURE_HISTORY        -222
 #define ONIGERR_INVALID_CHAR_PROPERTY_NAME                   -223
 #define ONIGERR_TOO_MANY_CAPTURE_GROUPS                      -224
+/* regex fix */
+#define ONIGERR_TOO_MANY_RANGE_REPEAT                        -225
+#define ONIGERR_TOO_MANY_NULL_CHECK                          -226
+#define ONIGERR_TOO_BIG_COMPILED_PROGRAM                     -227
+/* end regex fix */
 #define ONIGERR_INVALID_CODE_POINT_VALUE                     -400
 #define ONIGERR_INVALID_WIDE_CHAR_VALUE                      -400
 #define ONIGERR_TOO_BIG_WIDE_CHAR_VALUE                      -401
