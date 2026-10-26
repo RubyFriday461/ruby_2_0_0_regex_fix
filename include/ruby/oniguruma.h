@@ -573,7 +573,8 @@ ONIG_EXTERN const OnigSyntaxType*   OnigDefaultSyntax;
 #define ONIGERR_TOO_BIG_BACKREF_NUMBER                       -207
 #define ONIGERR_INVALID_BACKREF                              -208
 #define ONIGERR_NUMBERED_BACKREF_OR_CALL_NOT_ALLOWED         -209
-#define ONIGERR_TOO_SHORT_DIGITS                             -210
+#define ONIGERR_TOO_MANY_CAPTURE_GROUPS                      -210
+#define ONIGERR_TOO_SHORT_DIGITS                             -211
 #define ONIGERR_TOO_LONG_WIDE_CHAR_VALUE                     -212
 #define ONIGERR_EMPTY_GROUP_NAME                             -214
 #define ONIGERR_INVALID_GROUP_NAME                           -215
@@ -588,7 +589,6 @@ ONIG_EXTERN const OnigSyntaxType*   OnigDefaultSyntax;
 #define ONIGERR_TOO_MANY_RANGE_REPEAT                        -224
 #define ONIGERR_TOO_MANY_NULL_CHECK                          -225
 #define ONIGERR_TOO_BIG_COMPILED_PROGRAM                     -226
-#define ONIGERR_TOO_MANY_CAPTURE_GROUPS                      -224
 #define ONIGERR_INVALID_CODE_POINT_VALUE                     -400
 #define ONIGERR_INVALID_WIDE_CHAR_VALUE                      -400
 #define ONIGERR_TOO_BIG_WIDE_CHAR_VALUE                      -401
