@@ -536,7 +536,7 @@ class TestRegexp < Test::Unit::TestCase
     # partially parsed branch (parse_subexp freed the alternation list but not
     # the node parse_branch had built so far). Regexp#to_s reaches this path
     # for every /(?:a|b)c(d)/-shaped regexp.
-    assert_no_memory_leak([], "#{<<~"begin;"}", "#{<<~"end;"}", "[Bug #22384]", rss: true)
+    assert_no_memory_leak([], "#{<<-"begin;"}", "#{<<-"end;"}", "[Bug #22384]", rss: true)
       code = proc do
         Regexp.new("a|b(c") rescue nil
         /(?:a|b)c(d)/.to_s
