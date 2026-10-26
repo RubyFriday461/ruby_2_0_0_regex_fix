@@ -6248,7 +6248,7 @@ parse_subexp(Node** top, OnigToken* tok, int term,
       goto err;
     }
     *top = topnode;
-  else {
+  } else {
     onig_node_free(node);
   err:
     if (term == TK_SUBEXP_CLOSE)
